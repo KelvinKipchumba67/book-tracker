@@ -7,6 +7,7 @@ const changeStatus = async (status) => {
 try {
 const res = await api.updateBook(book._id, { status });
 dispatch({ type: 'UPDATE_BOOK', payload: res.data });
+  
 } catch (err) {
 console.error(err);
 }
