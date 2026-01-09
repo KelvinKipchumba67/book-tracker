@@ -1,0 +1,38 @@
+name: MERN CI pipeline
+
+on: #this tells the CI when it should run.That is everytime i push code to the main branch wake up and run this file.
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs: #this is what the CI will do once it runs.
+  build-and-test:
+    runs-on: ubuntu-latest #this is the OS the which the robot by github runs on.
+
+    steps:
+      #the first step the CI does.(do not bother why am calling it CI instead or robot or githubs robots I understand better when i call them CI) it downloads the code on the project or repo.
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      #the second step the CI does is to install node js this is only if the project runs on node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      #this is the third step the CI we are writing is to install the dependencies for the project remember the ones you install when you are writing code.
+      - name: Install dependencies
+        run: |
+          npm install   
+          cd client && npm install
+
+      #this is the is the fourth step and i feel like it is the most important step because once the tests fails the whole pipepline stops. Here the CI is basically checking for errors.
+      - name: Run Tests
+        run: npm test
+
+      #this is the last step i do not think it is the standard last step but for now it is. This steps Ensures the CI builds The React App.Hope you have noted the common commands you have used before.
+      - name: Build React App
+        run: |
+          cd client
+          npm run build
