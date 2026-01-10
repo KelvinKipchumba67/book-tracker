@@ -8,10 +8,10 @@ on: #this tells the CI when it should run.That is everytime i push code to the m
 
 jobs: #this is what the CI will do once it runs.
   build-and-test:
-    runs-on: ubuntu-latest #this is the OS the which the robot by github runs on.
+    runs-on: ubuntu-latest #this is the OS the which the robot by github runner for the CI runs on.
 
     steps:
-      #the first step the CI does.(do not bother why am calling it CI instead or robot or githubs robots I understand better when i call them CI) it downloads the code on the project or repo.
+      #the first step the CI does.(do not bother why am calling it CI instead or robot or github robots I understand better when i call them CI) it downloads the code on the project or repo.
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -24,7 +24,7 @@ jobs: #this is what the CI will do once it runs.
       #this is the third step the CI we are writing is to install the dependencies for the project remember the ones you install when you are writing code.
       - name: Install dependencies
         run: |
-          npm install   
+          cd server && npm install   
           cd client && npm install
 
       #this is the is the fourth step and i feel like it is the most important step because once the tests fails the whole pipepline stops. Here the CI is basically checking for errors.
