@@ -24,9 +24,11 @@ jobs: #this is what the CI will do once it runs.
       #this is the third step the CI we are writing is to install the dependencies for the project remember the ones you install when you are writing code.
       - name: Install dependencies
         run: |
-          cd server && npm install   
-          cd client && npm install
+          cd server && npm install
 
+      - name: Install dependencies
+        run: |
+          cd client && npm install
       #this is the is the fourth step and i feel like it is the most important step because once the tests fails the whole pipepline stops. Here the CI is basically checking for errors.
       - name: Run Tests
         run: npm test
