@@ -31,7 +31,9 @@ jobs: #this is what the CI will do once it runs.
           cd client && npm install
       #this is the is the fourth step and i feel like it is the most important step because once the tests fails the whole pipepline stops. Here the CI is basically checking for errors.
       - name: Run Tests
-        run: npm test
+        run: |
+          cd client
+          npm test
 
       #this is the last step i do not think it is the standard last step but for now it is. This steps Ensures the CI builds The React App.Hope you have noted the common commands you have used before.
       - name: Build React App
